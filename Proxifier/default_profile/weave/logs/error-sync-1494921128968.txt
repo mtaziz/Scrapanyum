@@ -1,0 +1,48 @@
+1494892857466	Sync.Service	INFO	Loading Weave 1.55.0
+1494892857469	Sync.Engine.Clients	DEBUG	Engine initialized
+1494892857470	Sync.Engine.Clients	DEBUG	Resetting clients last sync time
+1494892857485	Sync.Engine.Bookmarks	DEBUG	Engine initialized
+1494892857488	Sync.Engine.Forms	DEBUG	Engine initialized
+1494892857491	Sync.Engine.History	DEBUG	Engine initialized
+1494892857495	Sync.Engine.Passwords	DEBUG	Engine initialized
+1494892857498	Sync.Engine.Prefs	DEBUG	Engine initialized
+1494892857501	Sync.Engine.Tabs	DEBUG	Engine initialized
+1494892857502	Sync.Engine.Tabs	DEBUG	Resetting tabs last sync time
+1494892857506	Sync.Engine.Addons	DEBUG	Engine initialized
+1494892857509	Sync.Engine.Extension-Storage	DEBUG	Engine initialized
+1494892857509	Sync.Service	INFO	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0
+1494892857511	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1494892857511	Sync.Status	DEBUG	Status.login: success.login => error.login.reason.no_username
+1494892857511	Sync.Status	DEBUG	Status.service: success.status_ok => service.client_not_configured
+1494892857511	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => error.login.reason.no_username
+1494892857511	Sync.Status	DEBUG	Status.service: service.client_not_configured => service.client_not_configured
+1494892857548	browserwindow.syncui	DEBUG	observed: weave:service:ready
+1494892857552	Sync.Engine.AdblockPlus	DEBUG	Engine initialized
+1494892857552	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => error.login.reason.no_username
+1494892857553	Sync.Status	DEBUG	Status.service: service.client_not_configured => service.client_not_configured
+1494892857553	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1494892857554	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1494899687912	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms.
+1494921128951	Sync.Service	DEBUG	User-Agent: Firefox/53.0.2 (Windows NT 10.0; Win64; x64) FxSync/1.55.0.20170504105526.desktop
+1494921128951	Sync.Service	INFO	Starting sync at 2017-05-16 09:52:08
+1494921128952	Sync.Service	DEBUG	In sync: should login.
+1494921128952	browserwindow.syncui	DEBUG	observed: weave:service:login:start
+1494921128953	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => error.login.reason.no_username
+1494921128953	Sync.Status	DEBUG	Status.service: service.client_not_configured => service.client_not_configured
+1494921128953	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => error.login.reason.no_username
+1494921128953	Sync.Status	DEBUG	Status.service: service.client_not_configured => service.client_not_configured
+1494921128953	browserwindow.syncui	DEBUG	observed: weave:service:login:error
+1494921128954	browserwindow.syncui	DEBUG	onLoginError: login=error.login.reason.no_username, sync=success.sync
+1494921128955	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1494921128956	Sync.ErrorHandler	ERROR	Sync encountered a login error
+1494921128957	Sync.Service	DEBUG	Exception calling WrappedLock: Aborting login, client not configured.
+1494921128957	Sync.Service	DEBUG	Not syncing: login returned false.
+1494921128963	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1494921128965	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1494921128966	Sync.ErrorHandler	DEBUG	Addons installed: 6
+1494921128966	Sync.ErrorHandler	DEBUG	 - Adblock Plus, version 2.8.2, id {d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}
+1494921128967	Sync.ErrorHandler	DEBUG	 - Selenium IDE, version 2.9.1.1-signed, id {a6fd85ed-e919-4a43-a5af-8da18bda539f}
+1494921128967	Sync.ErrorHandler	DEBUG	 - HttpRequester, version 2.2, id {ea4637dc-e014-4c17-9c2c-879322d23268}
+1494921128967	Sync.ErrorHandler	DEBUG	 - Wappalyzer, version 3.2.11, id wappalyzer@crunchlabz.com
+1494921128968	Sync.ErrorHandler	DEBUG	 - React Devtools, version 2.0.12, id @react-devtools
+1494921128968	Sync.ErrorHandler	DEBUG	 - Dashlane, version 4.6.21, id jetpack-extension@dashlane.com

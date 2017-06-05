@@ -1,0 +1,21 @@
+{% if business_list %}
+
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create_business_modal">
+        + Añadir Nuevo Negocio
+    </button>
+
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_business_modal">
+        - Eliminar Negocio
+    </button>
+
+    <br>
+    <br>
+
+    {% for b in business_list %}
+        <button type="button" class="btn" id="{{ b.id }}" onclick="select_business(this)">
+            {{ b.brand }}
+        </button>
+        <br>
+    {% endfor %}
+
+{% endif %}

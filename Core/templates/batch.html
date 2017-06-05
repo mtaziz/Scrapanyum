@@ -1,0 +1,10 @@
+{#{% extends 'home.html' %}#}
+
+{% block batch_block %}
+    {% for b in batch_list %}
+        <button type="button" class="btn btn-success">
+            {{ b.name }}
+        </button>
+        <br>
+    {% endfor %}
+{% endblock %}

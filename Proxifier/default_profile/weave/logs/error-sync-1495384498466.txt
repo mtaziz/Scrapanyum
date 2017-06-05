@@ -1,0 +1,30 @@
+1495380895496	Sync.LogManager	DEBUG	Flushing file log
+1495380895500	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1495380895500	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1495380895508	browserwindow.syncui	DEBUG	observed: weave:ui:clear-error
+1495380895571	Sync.LogManager	DEBUG	Log cleanup threshold time: 1494516895571
+1495380898415	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms.
+1495380898706	Sync.LogManager	DEBUG	Done deleting files.
+1495384498411	Sync.Service	DEBUG	User-Agent: Firefox/53.0.2 (Windows NT 10.0; Win64; x64) FxSync/1.55.0.20170504105526.desktop
+1495384498412	Sync.Service	INFO	Starting sync at 2017-05-21 18:34:58
+1495384498413	Sync.Service	DEBUG	In sync: should login.
+1495384498415	browserwindow.syncui	DEBUG	observed: weave:service:login:start
+1495384498418	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => error.login.reason.no_username
+1495384498418	Sync.Status	DEBUG	Status.service: service.client_not_configured => service.client_not_configured
+1495384498419	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => error.login.reason.no_username
+1495384498419	Sync.Status	DEBUG	Status.service: service.client_not_configured => service.client_not_configured
+1495384498420	browserwindow.syncui	DEBUG	observed: weave:service:login:error
+1495384498420	browserwindow.syncui	DEBUG	onLoginError: login=error.login.reason.no_username, sync=success.sync
+1495384498424	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1495384498426	Sync.ErrorHandler	ERROR	Sync encountered a login error
+1495384498430	Sync.Service	DEBUG	Exception calling WrappedLock: Aborting login, client not configured.
+1495384498431	Sync.Service	DEBUG	Not syncing: login returned false.
+1495384498448	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1495384498452	browserwindow.syncui	DEBUG	loginFailed has sync state=error.login.reason.no_username
+1495384498456	Sync.ErrorHandler	DEBUG	Addons installed: 6
+1495384498457	Sync.ErrorHandler	DEBUG	 - Adblock Plus, version 2.8.2, id {d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}
+1495384498458	Sync.ErrorHandler	DEBUG	 - Selenium IDE, version 2.9.1.1-signed, id {a6fd85ed-e919-4a43-a5af-8da18bda539f}
+1495384498459	Sync.ErrorHandler	DEBUG	 - HttpRequester, version 2.2, id {ea4637dc-e014-4c17-9c2c-879322d23268}
+1495384498461	Sync.ErrorHandler	DEBUG	 - Wappalyzer, version 3.2.11, id wappalyzer@crunchlabz.com
+1495384498463	Sync.ErrorHandler	DEBUG	 - React Devtools, version 2.0.12, id @react-devtools
+1495384498464	Sync.ErrorHandler	DEBUG	 - Dashlane, version 4.6.21, id jetpack-extension@dashlane.com

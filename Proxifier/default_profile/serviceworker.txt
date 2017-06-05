@@ -1,0 +1,15 @@
+6
+
+https://web.whatsapp.com/
+https://web.whatsapp.com/serviceworker.js
+true
+{77e4a382-c371-458b-b9ad-ea7091bf2956}
+0
+#
+
+https://www.youtube.com/
+https://www.youtube.com/sw.js
+false
+{3dab08a4-3596-479d-a466-22fbf9fdc2bc}
+0
+#

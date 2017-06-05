@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Django Static Files Load -->
+    {% load static %}
+
+    <title>Accedite Brand Report Manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/jquery-ui.css" %}" rel="stylesheet">
+    <link href="{% static "css/jquery-ui.theme.css" %}" rel="stylesheet">
+
+    <style type="text/css">
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9static      <script src="/static/js/html5shiv.js"></scripstatic      <script src="/static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        {#        <a class="navbar-brand" href="/Core/home"><img src="{% static "img/accedite_icon.png" %}" alt="My image"#}
+        {#                                                  height="35px" width="35px"/></a>#}
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                                <li><a href="/home">Home</a></li>
+                <li><a href="/manager">Manager</a></li>
+                <li><a href="/task_schedule">Schedule</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+
+
+<!-- Start Content -->
+<div style="width:85%; margin:0 auto;">
+
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <h2 style="text-align: center;">Nueva Tarea</h2>
+
+            <hr>
+            <br>
+
+            <div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Cliente:
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ui-widget">
+                            <input type="text" name="search" id="client_search" onkeyup="search_client()"
+                                   onfocus="search_client()"
+                                   placeholder="Nombre de Cliente"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-lg-6">
+                        <span id="final_client" style="font-style: italic; opacity: 0.7">Selecciona un cliente</span>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        Negocio:
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ui-widget">
+                            <input type="text" name="search" id="business_search" onkeyup="search_business()"
+                                   onfocus="search_business()"
+                                   placeholder="Nombre de Marca o Negocio..."/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-lg-6">
+                        <span id="final_business" style="font-style: italic; opacity: 0.7">Selecciona un negocio</span>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        Fecha de Entrada:
+                    </div>
+                    <div class="col-lg-6">
+                        {{ batch_form.start }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Fecha de Finalizacion:
+                    </div>
+                    <div class="col-lg-6">
+                        {{ batch_form.end }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        ID Legalitas:
+                    </div>
+                    <div class="col-lg-6">
+                        {{ batch_form.legalitas_batch }}
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <button type="button" class="btn btn-success" onclick="create_batch()">
+                Crear Tarea
+            </button>
+
+        </div>
+
+
+        <div class="col-lg-4">
+            <h2 style="text-align: center;">Opciones</h2>
+
+            <hr>
+            <br>
+
+            <div id="client_list">
+                {% include 'clients.html' %}
+            </div>
+            <div id="business_list">
+                {% include 'business.html' %}
+            </div>
+        </div>
+
+
+        <div class="col-lg-4">
+            <h2 style="text-align: center;">Tipo de Tarea:</h2>
+
+            <hr>
+            <br>
+
+            <div id="accordion">
+                <h3>Scraper</h3>
+
+                <div id="idm_tab">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            Trip Advisor:
+                        </div>
+                        <div class="col-lg-6">
+                            {{ brand_report_instance_form.tripadvisor_url }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            Google Reviews:
+                        </div>
+                        <div class="col-lg-6">
+                            {{ brand_report_instance_form.google_url }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            Facebook Reviews:
+                        </div>
+                        <div class="col-lg-6">
+                            {{ brand_report_instance_form.facebook_url }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+<!-- End Content -->
+
+
+<!-- Start Modal Windows -->
+
+<!-- Create Client -->
+<div id="create_client_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Client</h4>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" id="new_client_form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ client_form.as_ul }}
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-xs-4">
+                    <img src="{% static "img/ajax-loader.gif" %}" class="load_div" alt="My image" height="25px"
+                         width="25px" hidden/>
+                    <button id="close_client_modal" type="submit" class="btn btn-error" data-dismiss="modal">Cancel
+                    </button>
+                    <button id="new_client_form" class="btn btn-success" data-dismiss="modal" onclick="create_client()">
+                        Create
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete Client-->
+<div id="delete_client_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Eliminar Cliente</h4>
+            </div>
+
+            <div class="modal-body">
+                ¿Estas seguro?
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delete_client()">Eliminar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Create Business -->
+<div id="create_business_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Business</h4>
+            </div>
+
+            <div class="modal-body">
+                {{ business_form.as_ul }}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="create_business()">Create
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete Business -->
+<div id="delete_business_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Borrar Negocio</h4>
+            </div>
+
+            <div class="modal-body">
+                ¿Estas seguro?
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delete_business()">Eliminar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/jquery-ui.min.js" %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/CoreJs/core_func.js" %}"></script>
+<script src="{% static "js/CoreJs/notify.min.js" %}"></script>
+<script>
+    $(function () {
+        $("#accordion").accordion();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#start_field').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#end_field').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#proxifier_end_field').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+</script>
+
+
+</body>
+</html>
+
+

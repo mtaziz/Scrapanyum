@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Django Static Files Load -->
+    {% load static %}
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/jquery-ui.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    <script src="{% static "js/ReportGeneratorJs/report_generator_func.js" %}"></script>
+
+
+    <title>Accedite Brand Report Manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+
+    <style type="text/css">
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  staticaticfilesript src="/static/js/html5shiv.js"></script>
+  staticaticfilesript src="/static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/manager">Manager</a></li>
+                <li><a href="/task_schedule">Schedule</a></li>
+            </ul>
+
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Reportes Pendientes</h2>
+            <br>
+            <div id="report_list">
+                {% for r in pending_reports %}
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-danger" id="button_{{ r.report.id }}">
+                                {{ r.name }}
+                            </button>
+                            <span class="report_id" hidden>{{ r.report.id }}</span>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div id="error_div_{{ r.report.id }}">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+            <br><br><br><br>
+            <button id="generate_reports" type="button" class="btn btn-success">
+                Generar
+            </button>
+
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Reportes en Proceso</h2>
+            <br>
+
+            <div id="report_list">
+                {% for r in wip_reports %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-warning" id="button_{{ r.report.id }}">
+                                {{ r.name }}
+                            </button>
+                            <span class="report_id" hidden>{{ r.report.id }}</span>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div id="load_div_{{ r.report.id }}">
+                                <img src="{% static "img/ajax-loader.gif" %}" class="load_div" alt="My image"
+                                     height="25px"
+                                     width="25px"/>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Ultimos Reportes terminados</h2>
+            <br>
+
+            <div id="report_list">
+                {% for r in done_reports %}
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-success" id="button_{{ r.report.id }}">
+                                {{ r.name }}
+                            </button>
+                            <span class="report_id" hidden>{{ r.report.id }}</span>
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

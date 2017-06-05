@@ -1,0 +1,23 @@
+{% if client_list %}
+
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create_client_modal">
+        + Añadir Nuevo Cliente
+    </button>
+
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_client_modal">
+        - Eliminar Cliente
+    </button>
+
+    <br>
+    <br>
+
+
+    {% for c in client_list %}
+        <button type="button" class="btn" id="{{ c.id }}" onclick="select_client(this)">
+            {{ c.name }}
+        </button>
+        <br>
+    {% endfor %}
+{% else %}
+    <span style="font-style: italic">Puede buscar cliente o negocio por los caracteres que comiencen...</span>
+{% endif %}

@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 192.168.99.100:8000/api/obtain-auth-token/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings. // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 139948509062312,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "6dkPynlS6jjCJcjhS8A3";
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div class="debugger">
+<h1>builtins.RuntimeError</h1>
+<div class="detail">
+  <p class="errormsg">RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 192.168.99.100:8000/api/obtain-auth-token/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-139948508833328">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/contrib/staticfiles/handlers.py"</cite>,
+      line <em class="line">63</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                    </span>return debug.technical_404_response(request, e)</pre>
+<pre class="line before"><span class="ws">        </span>return super(StaticFilesHandler, self).get_response(request)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>if not self._should_handle(get_path_info(environ)):</pre>
+<pre class="line current"><span class="ws">            </span>return self.application(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>return super(StaticFilesHandler, self).__call__(environ, start_response)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508833832">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/wsgi.py"</cite>,
+      line <em class="line">170</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                    </span>'status_code': 400,</pre>
+<pre class="line before"><span class="ws">                </span>}</pre>
+<pre class="line before"><span class="ws">            </span>)</pre>
+<pre class="line before"><span class="ws">            </span>response = http.HttpResponseBadRequest()</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line current"><span class="ws">            </span>response = self.get_response(request)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>response._handler_class = self.__class__</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>status = '%d %s' % (response.status_code, response.reason_phrase)</pre>
+<pre class="line after"><span class="ws">        </span>response_headers = [(str(k), str(v)) for k, v in response.items()]</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508835736">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py"</cite>,
+      line <em class="line">124</em>,
+      in <code class="function">get_response</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def get_response(self, request):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;Return an HttpResponse object for the given HttpRequest.&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span># Setup default url resolver for this thread</pre>
+<pre class="line before"><span class="ws">        </span>set_urlconf(settings.ROOT_URLCONF)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>response = self._middleware_chain(request)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span># This block is only needed for legacy MIDDLEWARE_CLASSES; if</pre>
+<pre class="line after"><span class="ws">        </span># MIDDLEWARE is used, self._response_middleware will be empty.</pre>
+<pre class="line after"><span class="ws">        </span>try:</pre>
+<pre class="line after"><span class="ws">            </span># Apply response middleware, regardless of the response</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508835792">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">44</em>,
+      in <code class="function">inner</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>@wraps(get_response, assigned=available_attrs(get_response))</pre>
+<pre class="line before"><span class="ws">    </span>def inner(request):</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>response = get_response(request)</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as exc:</pre>
+<pre class="line current"><span class="ws">            </span>response = response_for_exception(request, exc)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws">    </span>return inner</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>def response_for_exception(request, exc):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508833216">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">94</em>,
+      in <code class="function">response_for_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span># Allow sys.exit() to actually exit. See tickets #1023 and #4701</pre>
+<pre class="line before"><span class="ws">        </span>raise</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>else:</pre>
+<pre class="line before"><span class="ws">        </span>signals.got_request_exception.send(sender=None, request=request)</pre>
+<pre class="line current"><span class="ws">        </span>response = handle_uncaught_exception(request, get_resolver(get_urlconf()), sys.exc_info())</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>def get_exception_response(request, resolver, status_code, exception, sender=None):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508834280">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">136</em>,
+      in <code class="function">handle_uncaught_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>exc_info=exc_info,</pre>
+<pre class="line before"><span class="ws">        </span>extra={'status_code': 500, 'request': request},</pre>
+<pre class="line before"><span class="ws">    </span>)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>if settings.DEBUG:</pre>
+<pre class="line current"><span class="ws">        </span>return debug.technical_500_response(request, *exc_info)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span># If Http500 handler is not installed, reraise the last exception.</pre>
+<pre class="line after"><span class="ws">    </span>if resolver.urlconf_module is None:</pre>
+<pre class="line after"><span class="ws">        </span>six.reraise(*exc_info)</pre>
+<pre class="line after"><span class="ws">    </span># Return an HttpResponse that displays a friendly error message.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508834168">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django_extensions/management/technical_response.py"</cite>,
+      line <em class="line">6</em>,
+      in <code class="function">null_technical_500_response</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span># -*- coding: utf-8 -*-</pre>
+<pre class="line before"><span class="ws"></span>import six</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>def null_technical_500_response(request, exc_type, exc_value, tb, status_code=500):</pre>
+<pre class="line current"><span class="ws">    </span>six.reraise(exc_type, exc_value, tb)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508833944">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/six.py"</cite>,
+      line <em class="line">686</em>,
+      in <code class="function">reraise</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+<pre class="line before"><span class="ws">        </span>if value is None:</pre>
+<pre class="line before"><span class="ws">            </span>value = tp()</pre>
+<pre class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+<pre class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+<pre class="line current"><span class="ws">        </span>raise value</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>else:</pre>
+<pre class="line after"><span class="ws">    </span>def exec_(_code_, _globs_=None, _locs_=None):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Execute code in a namespace.&quot;&quot;&quot;</pre>
+<pre class="line after"><span class="ws">        </span>if _globs_ is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508834056">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">42</em>,
+      in <code class="function">inner</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>can rely on getting a response instead of an exception.</pre>
+<pre class="line before"><span class="ws">    </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">    </span>@wraps(get_response, assigned=available_attrs(get_response))</pre>
+<pre class="line before"><span class="ws">    </span>def inner(request):</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>response = get_response(request)</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as exc:</pre>
+<pre class="line after"><span class="ws">            </span>response = response_for_exception(request, exc)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws">    </span>return inner</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508143688">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/utils/deprecation.py"</cite>,
+      line <em class="line">136</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def __call__(self, request):</pre>
+<pre class="line before"><span class="ws">        </span>response = None</pre>
+<pre class="line before"><span class="ws">        </span>if hasattr(self, 'process_request'):</pre>
+<pre class="line before"><span class="ws">            </span>response = self.process_request(request)</pre>
+<pre class="line before"><span class="ws">        </span>if not response:</pre>
+<pre class="line current"><span class="ws">            </span>response = self.get_response(request)</pre>
+<pre class="line after"><span class="ws">        </span>if hasattr(self, 'process_response'):</pre>
+<pre class="line after"><span class="ws">            </span>response = self.process_response(request, response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508143800">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">44</em>,
+      in <code class="function">inner</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>@wraps(get_response, assigned=available_attrs(get_response))</pre>
+<pre class="line before"><span class="ws">    </span>def inner(request):</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>response = get_response(request)</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as exc:</pre>
+<pre class="line current"><span class="ws">            </span>response = response_for_exception(request, exc)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws">    </span>return inner</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>def response_for_exception(request, exc):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508143744">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">94</em>,
+      in <code class="function">response_for_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span># Allow sys.exit() to actually exit. See tickets #1023 and #4701</pre>
+<pre class="line before"><span class="ws">        </span>raise</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>else:</pre>
+<pre class="line before"><span class="ws">        </span>signals.got_request_exception.send(sender=None, request=request)</pre>
+<pre class="line current"><span class="ws">        </span>response = handle_uncaught_exception(request, get_resolver(get_urlconf()), sys.exc_info())</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>def get_exception_response(request, resolver, status_code, exception, sender=None):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508143856">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">136</em>,
+      in <code class="function">handle_uncaught_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>exc_info=exc_info,</pre>
+<pre class="line before"><span class="ws">        </span>extra={'status_code': 500, 'request': request},</pre>
+<pre class="line before"><span class="ws">    </span>)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>if settings.DEBUG:</pre>
+<pre class="line current"><span class="ws">        </span>return debug.technical_500_response(request, *exc_info)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span># If Http500 handler is not installed, reraise the last exception.</pre>
+<pre class="line after"><span class="ws">    </span>if resolver.urlconf_module is None:</pre>
+<pre class="line after"><span class="ws">        </span>six.reraise(*exc_info)</pre>
+<pre class="line after"><span class="ws">    </span># Return an HttpResponse that displays a friendly error message.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508143912">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django_extensions/management/technical_response.py"</cite>,
+      line <em class="line">6</em>,
+      in <code class="function">null_technical_500_response</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span># -*- coding: utf-8 -*-</pre>
+<pre class="line before"><span class="ws"></span>import six</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>def null_technical_500_response(request, exc_type, exc_value, tb, status_code=500):</pre>
+<pre class="line current"><span class="ws">    </span>six.reraise(exc_type, exc_value, tb)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508144080">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/six.py"</cite>,
+      line <em class="line">686</em>,
+      in <code class="function">reraise</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+<pre class="line before"><span class="ws">        </span>if value is None:</pre>
+<pre class="line before"><span class="ws">            </span>value = tp()</pre>
+<pre class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+<pre class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+<pre class="line current"><span class="ws">        </span>raise value</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>else:</pre>
+<pre class="line after"><span class="ws">    </span>def exec_(_code_, _globs_=None, _locs_=None):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Execute code in a namespace.&quot;&quot;&quot;</pre>
+<pre class="line after"><span class="ws">        </span>if _globs_ is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508144192">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py"</cite>,
+      line <em class="line">42</em>,
+      in <code class="function">inner</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">    </span>can rely on getting a response instead of an exception.</pre>
+<pre class="line before"><span class="ws">    </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">    </span>@wraps(get_response, assigned=available_attrs(get_response))</pre>
+<pre class="line before"><span class="ws">    </span>def inner(request):</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>response = get_response(request)</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as exc:</pre>
+<pre class="line after"><span class="ws">            </span>response = response_for_exception(request, exc)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws">    </span>return inner</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508144024">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/utils/deprecation.py"</cite>,
+      line <em class="line">134</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>super(MiddlewareMixin, self).__init__()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, request):</pre>
+<pre class="line before"><span class="ws">        </span>response = None</pre>
+<pre class="line before"><span class="ws">        </span>if hasattr(self, 'process_request'):</pre>
+<pre class="line current"><span class="ws">            </span>response = self.process_request(request)</pre>
+<pre class="line after"><span class="ws">        </span>if not response:</pre>
+<pre class="line after"><span class="ws">            </span>response = self.get_response(request)</pre>
+<pre class="line after"><span class="ws">        </span>if hasattr(self, 'process_response'):</pre>
+<pre class="line after"><span class="ws">            </span>response = self.process_response(request, response)</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508144136">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/middleware/common.py"</cite>,
+      line <em class="line">63</em>,
+      in <code class="function">process_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>must_prepend = settings.PREPEND_WWW and host and not host.startswith('www.')</pre>
+<pre class="line before"><span class="ws">        </span>redirect_url = ('%s://www.%s' % (request.scheme, host)) if must_prepend else ''</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span># Check if a slash should be appended</pre>
+<pre class="line before"><span class="ws">        </span>if self.should_redirect_with_slash(request):</pre>
+<pre class="line current"><span class="ws">            </span>path = self.get_full_path_with_slash(request)</pre>
+<pre class="line after"><span class="ws">        </span>else:</pre>
+<pre class="line after"><span class="ws">            </span>path = request.get_full_path()</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span># Return a redirect if necessary</pre>
+<pre class="line after"><span class="ws">        </span>if redirect_url or path != request.get_full_path():</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139948508144304">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.5/site-packages/django/middleware/common.py"</cite>,
+      line <em class="line">101</em>,
+      in <code class="function">get_full_path_with_slash</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                </span>&quot;in a slash and you have APPEND_SLASH set. Django can't &quot;</pre>
+<pre class="line before"><span class="ws">                </span>&quot;redirect to the slash URL while maintaining %(method)s data. &quot;</pre>
+<pre class="line before"><span class="ws">                </span>&quot;Change your form to point to %(url)s (note the trailing &quot;</pre>
+<pre class="line before"><span class="ws">                </span>&quot;slash), or set APPEND_SLASH=False in your Django settings.&quot; % {</pre>
+<pre class="line before"><span class="ws">                    </span>'method': request.method,</pre>
+<pre class="line current"><span class="ws">                    </span>'url': request.get_host() + new_path,</pre>
+<pre class="line after"><span class="ws">                </span>}</pre>
+<pre class="line after"><span class="ws">            </span>)</pre>
+<pre class="line after"><span class="ws">        </span>return new_path</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def process_response(self, request, response):</pre></div>
+</div>
+</ul>
+  <blockquote>RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 192.168.99.100:8000/api/obtain-auth-token/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &quot;/usr/local/lib/python3.5/site-packages/django/contrib/staticfiles/handlers.py&quot;, line 63, in __call__
+    return self.application(environ, start_response)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/wsgi.py&quot;, line 170, in __call__
+    response = self.get_response(request)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py&quot;, line 124, in get_response
+    response = self._middleware_chain(request)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 44, in inner
+    response = response_for_exception(request, exc)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 94, in response_for_exception
+    response = handle_uncaught_exception(request, get_resolver(get_urlconf()), sys.exc_info())
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 136, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+  File &quot;/usr/local/lib/python3.5/site-packages/django_extensions/management/technical_response.py&quot;, line 6, in null_technical_500_response
+    six.reraise(exc_type, exc_value, tb)
+  File &quot;/usr/local/lib/python3.5/site-packages/six.py&quot;, line 686, in reraise
+    raise value
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 42, in inner
+    response = get_response(request)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/utils/deprecation.py&quot;, line 136, in __call__
+    response = self.get_response(request)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 44, in inner
+    response = response_for_exception(request, exc)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 94, in response_for_exception
+    response = handle_uncaught_exception(request, get_resolver(get_urlconf()), sys.exc_info())
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 136, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+  File &quot;/usr/local/lib/python3.5/site-packages/django_extensions/management/technical_response.py&quot;, line 6, in null_technical_500_response
+    six.reraise(exc_type, exc_value, tb)
+  File &quot;/usr/local/lib/python3.5/site-packages/six.py&quot;, line 686, in reraise
+    raise value
+  File &quot;/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py&quot;, line 42, in inner
+    response = get_response(request)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/utils/deprecation.py&quot;, line 134, in __call__
+    response = self.process_request(request)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/middleware/common.py&quot;, line 63, in process_request
+    path = self.get_full_path_with_slash(request)
+  File &quot;/usr/local/lib/python3.5/site-packages/django/middleware/common.py&quot;, line 101, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 192.168.99.100:8000/api/obtain-auth-token/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/django/contrib/staticfiles/handlers.py", line 63, in __call__
+    return self.application(environ, start_response)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/wsgi.py", line 170, in __call__
+    response = self.get_response(request)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py", line 124, in get_response
+    response = self._middleware_chain(request)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 44, in inner
+    response = response_for_exception(request, exc)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 94, in response_for_exception
+    response = handle_uncaught_exception(request, get_resolver(get_urlconf()), sys.exc_info())
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 136, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+  File "/usr/local/lib/python3.5/site-packages/django_extensions/management/technical_response.py", line 6, in null_technical_500_response
+    six.reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/site-packages/six.py", line 686, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.get_response(request)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 44, in inner
+    response = response_for_exception(request, exc)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 94, in response_for_exception
+    response = handle_uncaught_exception(request, get_resolver(get_urlconf()), sys.exc_info())
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 136, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+  File "/usr/local/lib/python3.5/site-packages/django_extensions/management/technical_response.py", line 6, in null_technical_500_response
+    six.reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/site-packages/six.py", line 686, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/site-packages/django/utils/deprecation.py", line 134, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.5/site-packages/django/middleware/common.py", line 63, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/usr/local/lib/python3.5/site-packages/django/middleware/common.py", line 101, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 192.168.99.100:8000/api/obtain-auth-token/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+
+-->
